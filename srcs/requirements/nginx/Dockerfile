@@ -1,6 +1,6 @@
-FROM alpine:3.18.0
+FROM alpine:3.14
 
-RUN apk update && apk upgrade && apk add --no-cache nginx
+RUN apk update && apk upgrade --no-cache && apk add --no-cache nginx
 
 EXPOSE 443
 
