@@ -1,7 +1,12 @@
-FROM    alpine:3.14
+FROM alpine:3.14
 
-RUN     apk update && apk upgrade --no-cache && apk add --no-cache mariadb mariadb-client
+RUN apk update && apk upgrade --no-cache && \
+    apk add --no-cache mariadb mariadb-client  && \
+    mkdir -p /var/lib/mysql && \
+    chown -R mysql:mysql /var/lib/mysql
 
-EXPOSE  3306
+EXPOSE 3306
 
-CMD [ "mysqld", "--user=mysql", "--console" ]
+USER mysql
+
+CMD [ "mysqld" ]

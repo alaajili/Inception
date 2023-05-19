@@ -1,0 +1,19 @@
+version: "2"
+
+services:
+  nginx:
+    build:
+      context: ./requirements/nginx
+    ports:
+      - 443:443
+    restart: always
+
+  mariadb:
+    build:
+      context: ./requirements/mariadb
+    restart: always
+  
+  wordpress:
+    build:
+      context: ./requirements/wordpress
+    restart: always
