@@ -11,9 +11,13 @@ services:
   mariadb:
     build:
       context: ./requirements/mariadb
+    env_file:
+      .env
     restart: always
   
   wordpress:
     build:
       context: ./requirements/wordpress
+    env_file:
+      .env
     restart: always
