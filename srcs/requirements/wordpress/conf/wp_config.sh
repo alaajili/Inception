@@ -32,6 +32,13 @@ sed -i -r "s/localhost/mariadb/1" wp-config.php
 
 
 
-wp core install --url=$DOMAIN_NAME --title=$WP_TITLE --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PW --admin_email= --allow-root
+wp core install --url=$DOMAIN_NAME/ --title=$WP_TITLE --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PW --allow-root
 
-wp user create $WP_USER $WP_EMAIL
+wp user create $WP_USER $WP_EMAIL --role=author --user_pass=$WP_PW --allow-root
+
+
+sed -i "s/listen = 127.0.0.1:9000/listen = 0.0.0.0:9000/1" /etc/php7/php-fpm.d/www.conf
+
+mkdir -p /run/php
+
+/usr/sbin/php-fpm7
