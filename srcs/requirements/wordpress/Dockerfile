@@ -15,4 +15,8 @@ php7-mbstring
 
 COPY ./conf/wp_config.sh /
 
-CMD [ "./wp_config.sh" ]
+RUN chmod +x wp_config.sh
+
+EXPOSE 9000
+
+CMD [ "sh", "wp_config.sh" ]
