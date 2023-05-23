@@ -1,7 +1,4 @@
 #!/bin/bash
-# export DB_NAME=db
-# export DB_USER=mamella
-# export DB_PASSWORD=mamella00
 
 
 echo "CREATE DATABASE IF NOT EXISTS $DB_NAME ;" > db1.sql

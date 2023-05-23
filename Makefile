@@ -1,5 +1,5 @@
 up:
-	@cd srcs && docker-compose --env-file .env up -d
+	@cd srcs && docker-compose --env-file .env up
 down:
 	@cd srcs && docker-compose down
 fclean: down

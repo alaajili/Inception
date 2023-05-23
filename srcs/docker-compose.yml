@@ -11,6 +11,8 @@ services:
       - inception
     depends_on:
       - wordpress
+    volumes:
+      - wordpress:/var/www/html
     restart: always
 
   mariadb:
@@ -42,4 +44,14 @@ services:
 networks:
   inception:
     driver: bridge
+
+
+volumes:
+  wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+      device: /Users/alaajili/Desktop/Inception
+      o: bind
+      type: none
 
