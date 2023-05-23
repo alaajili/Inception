@@ -15,7 +15,7 @@ chmod +x wp-cli.phar
 mv wp-cli.phar /usr/local/bin/wp
 
 # download WordPress
-wp core download --allow-root
+wp core download --version=5.8.1 --allow-root
 
 mv wp-config-sample.php wp-config.php
 
@@ -29,12 +29,12 @@ sed -i -r "s/password_here/$DB_PASSWORD/1" wp-config.php
 
 sed -i -r "s/localhost/mariadb/1" wp-config.php
 
-#sed -i "s/listen = 127.0.0.1:9000/listen = 0.0.0.0:9000/1" /etc/php7/php-fpm.d/www.conf
-
 wp core install --url=$DOMAIN_NAME --title=$WP_TITLE --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PW --admin_email=$WP_ADMIN_EMAIL --allow-root
 
 wp user create $WP_USER $WP_EMAIL --role=author --user_pass=$WP_PW --allow-root
 
+# wp theme install astra --activate --allow-root
+
 mkdir -p /run/php
 
-exec php-fpm7 -F -R
+exec php-fpm7 -F

@@ -12,7 +12,7 @@ services:
     depends_on:
       - wordpress
     volumes:
-      - wordpress:/var/www/html
+      - wp:/var/www/html
     restart: always
 
   mariadb:
@@ -25,6 +25,8 @@ services:
       - inception
     env_file:
       .env
+    volumes:
+      - db:/var/lib/mysql
     restart: always
   
   wordpress:
@@ -39,6 +41,8 @@ services:
       .env
     depends_on:
       - mariadb
+    volumes:
+      - wp:/var/www/html
     restart: always
 
 networks:
@@ -47,11 +51,18 @@ networks:
 
 
 volumes:
-  wordpress:
-    name: wordpress
+  wp:
+    name: wp
     driver: local
     driver_opts:
-      device: /Users/alaajili/Desktop/Inception
+      device: /Users/alaajili/Desktop/wp
+      o: bind
+      type: none
+  db:
+    name: db
+    driver: local
+    driver_opts:
+      device: /Users/alaajili/Desktop/db
       o: bind
       type: none
 
